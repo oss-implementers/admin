@@ -1,0 +1,38 @@
+<div class="login-box">
+
+       <%= form_for @vendor, url: vendor_path, html: {class: "forget-form"} do |f| %>
+       
+        <% if @vendor.errors.full_messages.any? %>
+            <% @vendor.errors.full_messages.reverse.each do |error_message| %>
+              <div class="alert alert-danger"><%= error_message %></div>
+            <% end %>
+        <% end %>
+
+         <% if flash[:exist] %>
+		    <div class="alert alert-danger"><%= flash[:exist] %></div>
+		  <% end %>
+
+
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+        </div>
+
+         <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+         </div>
+
+         <div class="form-group">
+          <%= f.label :business_name %>
+          <%= f.text_field :business_name, class: "form-control", placeholder: "Business Name" %>
+         </div>
+
+        <div class="actions"><%= f.submit "Submit", class: "btn btn-primary btn-block" %></div>
+      <% end %>
+
+</div>

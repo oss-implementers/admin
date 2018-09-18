@@ -1,0 +1,61 @@
+<main class="app-content">
+	<div class="app-title">
+		<div>
+			<h3><i class="fa fa-edit"></i> Add Category</h3>
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+			<li class="breadcrumb-item">Forms</li>
+			<li class="breadcrumb-item"><a href="#">Sample Forms</a></li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="tile">
+
+				<%= form_for @category, url: admin_category_index_path, method: :post, html: {class: ""} do |f| %>
+
+				<% if @category.errors.full_messages.any? %>
+					<% @category.errors.full_messages.reverse.each do |error_message| %>
+					    <div class="alert alert-danger"><%= error_message %></div>
+					<% end %>
+				<% end %>
+
+
+				<% flash.each do |key, value| %>
+					<div class="alert alert-<%= key %>"><%= value %></div>
+				<% end %>
+
+				<div class="tile-body">
+					<div class="form-group">
+						<%= f.label :parent_category, class: "control-label" %>
+						<%= f.select(:parent_id, options_for_select(category_options_array), {}, { :class => 'form-control' }) %>
+					</div>
+
+					<div class="form-group">
+						<%= f.label :name, class: "control-label" %>
+						<%= f.text_field :name, class: "form-control", placeholder: "Category name", autocomplete: "off" %>
+					</div>
+					<div class="form-group">
+						<%= f.label :commission, class: "control-label" %>
+						<%= f.text_field :commission, class: "form-control", placeholder: "Commission", autocomplete: "off" %>
+					</div>
+
+					<div class="form-group">
+						<%= f.label :status, class: "control-label" %>
+						<%= f.select(:status, [['Active', 1], ['Inactive', 0]], {}, { :class => 'form-control' }) %>
+					</div>
+
+				</div>
+
+				<div class="tile-footer">
+					<button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Submit</button>
+				</div>
+
+				<% end %>
+
+			</div>
+		</div>
+	
+	</div>
+</main>

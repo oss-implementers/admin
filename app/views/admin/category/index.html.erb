@@ -1,0 +1,40 @@
+<main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-th-list"></i> Categories</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-body">
+              <table class="table table-hover table-bordered" id="sampleTable">
+                <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Commission</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% 
+                      @count = 0
+                      @categories.each do |category| 
+                    %>
+                      <tr>
+                        <td><%= @count += 1 %></td>
+                        <td><%= category.name %></td>
+                        <td><%= category.commission %></td>
+                        <td><%= category.status == 1 ? "Active" : "Inactive" %></td>
+                        <td><%= link_to 'Edit', edit_admin_category_path(category) %> | <%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>

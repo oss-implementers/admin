@@ -1,0 +1,23 @@
+<div class="login-box">
+
+   <%= form_tag admin_password_resets_path, class: "login-form" do %>
+
+      <h3 class="login-head">Forgot Password</h3>
+
+       <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+       <% end %>
+
+	   <div class="form-group">
+	      <%= label_tag :email %>
+	      <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Email" %>
+	   </div>
+
+	   <div class="form-group btn-container">
+	      <%= submit_tag "Reset Password", class: 'btn btn-primary btn-block' %><br />
+	      <%= link_to "<button class='btn btn-info btn-block'>Sign In Here</button>".html_safe, admin_login_url %>
+	   </div>
+
+       <% end %>
+
+</div>
